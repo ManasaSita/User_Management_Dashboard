@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUsers, deleteUser } from "../api/userServices";
 import { Link } from "react-router-dom";
-import "../index.css";
+import '../index.css';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -32,73 +32,74 @@ const UserList = () => {
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
-  return (
-    <div className="container mt-6">
-      <div className="box">
-        <div className="columns is-mobile is-vcentered">
-          <div className="column is-half">
-            <h2 className="title is-3">User Management</h2>
-          </div>
-          <div className="column is-half has-text-right">
-            <Link to="/add-user">
-              <button className="button is-primary">Add User</button>
-            </Link>
-          </div>
-        </div>
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
-        <table className="table is-fullwidth is-striped is-hoverable">
-          <thead className="has-background-info has-text-black">
+  return (
+    <div className="container is-fluid p-4">
+      <div className="is-flex is-justify-content-space-between is-align-items-center mb-4">
+        <h2 className="title is-3 mb-0">User Management</h2>
+        <Link to="/add-user">
+          <button className="button add-user">Add User</button>
+        </Link>
+      </div>
+      <div className="table-container">
+        <table className="table is-fullwidth is-bordered is-hoverable">
+          <thead>
             <tr>
-              <th className="has-text-centered">ID</th>
-              <th className="has-text-centered">First Name</th>
-              <th className="has-text-centered">Last Name</th>
-              <th className="has-text-centered">Email</th>
-              <th className="has-text-centered">Department</th>
-              <th className="has-text-centered">Actions</th>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentUsers.map((user) => (
               <tr key={user.id}>
-                <td className="has-text-centered">{user.id}</td>
-                <td className="has-text-centered">{user.name.split(" ")[0]}</td>
-                <td className="has-text-centered">{user.name.split(" ")[1] || "N/A"}</td>
-                <td className="has-text-centered">{user.email}</td>
-                <td className="has-text-centered">{user.company.name}</td>
-                <td className="has-text-centered">
-                  <Link to={`/edit-user/${user.id}`}>
-                    <button className="button is-warning mr-2">Edit</button>
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(user.id)}
-                    className="button is-danger"
-                  >
-                    Delete
-                  </button>
+                <td>{user.id}</td>
+                <td>{user.name.split(" ")[0]}</td>
+                <td>{user.name.split(" ")[1] || "N/A"}</td>
+                <td>{user.email}</td>
+                <td>{user.company.name}</td>
+                <td>
+                  <div className="buttons">
+                    <Link to={`/edit-user/${user.id}`}>
+                      <button className="button edit-user">Edit</button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(user.id)}
+                      className="button delete-user"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
-        {/* Pagination */}
-        <div className="is-flex is-justify-content-center mt-4">
-          <button
-            className="button is-light mr-2"
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous
-          </button>
-          <button
-            className="button is-light"
-            disabled={currentPage * usersPerPage >= users.length}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            Next
-          </button>
-        </div>
       </div>
+
+      {/* Pagination */}
+      <nav className="pagination is-centered mt-4" role="navigation" aria-label="pagination">
+        <ul className="pagination-list">
+          {pageNumbers.map((number) => (
+            <li key={number} className="is-transparent">
+              <a
+                className={`pagination-link ${number === currentPage ? 'is-current' : ''}`}
+                onClick={() => setCurrentPage(number)}
+                aria-label={`Go to page ${number}`}
+              >
+                {number}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };

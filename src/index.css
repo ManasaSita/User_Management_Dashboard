@@ -1,1 +1,114 @@
 @import 'bulma/css/bulma.min.css';
+
+/* Remove the default button styling */
+.button,
+.pagination-link {
+  background: none;
+  border: none !important;
+  text-decoration: underline;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* Add custom colors for different buttons */
+.add-user {
+  color: #4ebb6a !important; /* Blue for Add User */
+}
+
+.edit-user {
+  color: #6365ffe8 !important; /* Green for Edit */
+}
+
+.delete-user {
+  color: #c43854 !important; /* Red for Delete */
+}
+
+.pagination-link {
+  color: #3273dc !important; /* Blue for pagination links */
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.pagination-link.is-current {
+  font-weight: bold;
+  color: #ffff !important; /* Highlight color for current page */
+}
+
+.pagination-link:hover {
+  color: #2631aa !important; /* Yellow hover effect */
+}
+
+.pagination-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination-list li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/* Input Styling */
+.input {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px; /* Limit max-width of inputs */
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* Center input fields */
+}
+
+.input.is-medium {
+  font-size: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Button Styling */
+.button.is-link {
+  background-color: transparent;
+  border: 1px solid #3273dc; /* Blue border for Add User button */
+  color: #3273dc; /* Blue text */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.button.is-link:hover {
+  background-color: #3273dc;
+  color: white; /* Change text to white when hovered */
+}
+
+.button.is-fullwidth {
+  width: 100%; /* Full-width buttons */
+  margin-top: 1rem;
+}
+
+/* Title */
+.title.is-3 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Centering Form */
+.container.is-flex.is-justify-content-center.is-align-items-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.box {
+  padding: 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+}

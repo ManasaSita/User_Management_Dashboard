@@ -1,1 +1,15 @@
-@import 'bulma/css/bulma.min.css';
+/* In your index.css or custom CSS file */
+.button {
+  border: none; /* Removes border */
+  box-shadow: none; /* Removes box shadow */
+  border-radius: 50px; /* For rounded buttons (optional) */
+}
+
+.button.is-link, .button.is-danger {
+  background-color: #3273dc; /* Blue for Add and Edit */
+  color: white;
+}
+
+.button.is-danger {
+  background-color: #f14668; /* Red for Delete */
+}
